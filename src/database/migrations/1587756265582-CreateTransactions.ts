@@ -24,7 +24,9 @@ export default class CreateTransactions1587756265582
           },
           {
             name: 'type',
-            type: 'varchar',
+            type: 'enum',
+            enum: ['income', 'outcome'],
+            enumName: 'typeEnum',
           },
           {
             name: 'category_id',
@@ -33,10 +35,12 @@ export default class CreateTransactions1587756265582
           {
             name: 'created_at',
             type: 'timestamp',
+            default: 'now()',
           },
           {
             name: 'updated_at',
             type: 'timestamp',
+            default: 'now()',
           },
         ],
       }),

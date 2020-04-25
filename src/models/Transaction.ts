@@ -9,6 +9,11 @@ import {
 } from 'typeorm';
 import Category from './Category';
 
+export enum TransactionType {
+  INCOME = 'income',
+  OUTCOME = 'outcome',
+}
+
 @Entity('transactions')
 class Transaction {
   @PrimaryGeneratedColumn('uuid')
@@ -17,13 +22,18 @@ class Transaction {
   @Column()
   title: string;
 
-  @Column()
-  type: 'income' | 'outcome';
+  @Column({
+    type: 'enum',
+    enum: TransactionType,
+  })
+  type: TransactionType;
 
   @Column()
   value: number;
 
   @Column()
+  category_id: string;
+
   @ManyToOne(() => Category)
   @JoinColumn({ name: 'category_id' })
   category: Category;
