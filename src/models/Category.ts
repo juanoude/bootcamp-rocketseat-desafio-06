@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity('categories')
@@ -11,6 +12,7 @@ class Category {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @OneToMany(() => Category, transaction => transaction.category)
   @Column()
   title: string;
 
